@@ -2,24 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/web/warstwa_internetowa_jsf/lista_produktow.xhtml</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/web/resources/css/default.css</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/src/java/warstwa_biznesowa/entity/Produkt1.java</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/web/WEB-INF/faces-config.xml</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/web/resources/css/jsfcrud.css</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/nbproject/build-impl.xml</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/web/template.xhtml</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/src/java/pomoc/Zmiana_danych.java</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/web/index1.xhtml</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/src/java/warstwa_biznesowa/Fasada_warstwy_biznesowej.java</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/nbproject/project.properties</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/web/warstwa_internetowa_jsf/dodaj_produkt2.xhtml</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/src/java/Bundle.properties</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/web/resources/css/cssLayout.css</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/src/java/warstwa_internetowa/Managed_produkt.java</file>
-            <file>file:/C:/Studia/Szkola/CalyTINT/TINT/TINT_Laboratoria/Sklep_6/web/warstwa_internetowa_jsf/rezultat2.xhtml</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
