@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./../template.xhtml">
+            <ui:define name="title">
+                <h:outputText value="#{bundle['lista_produktow.tytul']}"></h:outputText>
+            </ui:define>
+            <ui:define name="content">
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:outputText escape="false" value="#{bundle['lista_produktow.pusta']}" 
+                                  rendered="#{managed_produkt.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{managed_produkt.items.rowCount > 0}">
+                        <h:dataTable value="#{managed_produkt.items}" var="item" border="0" 
+                                     cellpadding="2" cellspacing="0" 
+                                     rowClasses="jsfcrud_odd_row,jsfcrud_even_row" 
+                                     rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle['lista_produktow.id']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.get(0)}"/>
+                            </h:column> 
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle['lista_produktow.nazwa']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.get(1)}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle['lista_produktow.cena']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.get(2)}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle['lista_produktow.promocja']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.get(3)}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle['lista_produktow.data']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.get(4)}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle['lista_produktow.cena_brutto']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.get(5)}"/> 
+                            </h:column>
+                        </h:dataTable>                  
+                    </h:panelGroup>
+                    <h:commandButton id="powrot" value="#{bundle['lista_produktow.powrot']}" action="/faces/index1" />
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
