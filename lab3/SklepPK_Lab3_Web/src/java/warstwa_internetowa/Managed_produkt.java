@@ -3,7 +3,7 @@ package warstwa_internetowa;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
@@ -15,12 +15,13 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.ActionListener;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import pomoc.PaginationHelper;
 import pomoc.Zmiana_danych;
 import warstwa_biznesowa.dto.Produkt_dto;
 import warstwa_biznesowa_ejb.Fasada_warstwy_biznesowej_ejbRemote;
 
 @Named(value = "managed_produkt")
-@RequestScoped
+@SessionScoped
 public class Managed_produkt implements ActionListener, Serializable {
 
     @EJB
@@ -28,6 +29,7 @@ public class Managed_produkt implements ActionListener, Serializable {
 
     
     public Managed_produkt() { }
+    private PaginationHelper pagination;
     private Produkt_dto produkt_dto = new Produkt_dto();
     private String nazwa;
     private float cena;
@@ -54,6 +56,41 @@ public class Managed_produkt implements ActionListener, Serializable {
         this.number_convert = Number_convert;
     }
 
+    
+    public PaginationHelper getPagination() {
+        if(pagination == null) {
+            pagination = new PaginationHelper(3) {
+                @Override
+                public int getItemsCount() {
+                    return getFasada().count();
+                }
+                
+                @Override
+                public DataModel createPageDataModel() {
+                    int[] range = {getPageFirstItem(), getPageLastItem() + 1};
+                    return new ListDataModel(getFasada().findRange(range));
+                }
+            };
+        }
+        return pagination;
+    }
+    
+    private void recreateModel() {
+        items = null;
+    }
+    
+    public String next() {
+        getPagination().nextPage();
+        recreateModel();
+        return "lista_produktow";
+    }
+    
+    public String previous() {
+        getPagination().previousPage();
+        recreateModel();
+        return "lista_produktow";
+    }
+    
     public int getMin() {
         return 0;
     }
@@ -125,12 +162,15 @@ public class Managed_produkt implements ActionListener, Serializable {
     public void dodaj_produkt() {
         fasada.utworz_produkt(produkt_dto);
         dane_produktu();
+        recreateModel();
+        getPagination().nextPage();
     }
 
     public void dane_produktu() {
         stan = 1;
         produkt_dto = fasada.dane_produktu();
         if (produkt_dto == null) {
+            produkt_dto = new Produkt_dto();
             stan = 0;
         }
     }
@@ -147,8 +187,8 @@ public class Managed_produkt implements ActionListener, Serializable {
     }
 
     public DataModel getItems() {
-        if (items == null|| stan==1) {
-            items = utworz_DataModel();
+        if (items == null|| fasada.isStan()) {
+            items = getPagination().createPageDataModel();
         }
         return items;
     }

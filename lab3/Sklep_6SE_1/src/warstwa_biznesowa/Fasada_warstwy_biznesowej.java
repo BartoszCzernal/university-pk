@@ -11,6 +11,26 @@ public class Fasada_warstwy_biznesowej {
     private ArrayList<Produkt1> produkty = new ArrayList();
     boolean stan = false;
 
+    public boolean isStan() {
+        return stan;
+    }
+    
+    public void setStan(boolean stan) {
+        this.stan = stan;
+    }
+    
+    public int count() {
+        return produkty.size();
+    }
+    
+    public ArrayList<Produkt_dto> findRange(int[] range) {
+        ArrayList<Produkt_dto> pom = new ArrayList();
+        for (int i = range[0]; i < range[1]; i++ ) {
+            pom.add(produkt_transfer(getProdukty().get(i)));
+        }
+        return pom;
+    }
+    
     public ArrayList<Produkt1> getProdukty() {
         return produkty;
     }

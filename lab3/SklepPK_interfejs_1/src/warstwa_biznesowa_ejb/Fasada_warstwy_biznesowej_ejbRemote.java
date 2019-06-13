@@ -19,4 +19,8 @@ public interface Fasada_warstwy_biznesowej_ejbRemote {
     public Produkt_dto dane_produktu();
     public ArrayList<ArrayList<String>> items();
     public ArrayList<Produkt_dto> items_();
+    public int count();
+    public ArrayList<Produkt_dto> findRange(int[] range);
+    public boolean isStan();
+    public void setStan(boolean stan);
 }

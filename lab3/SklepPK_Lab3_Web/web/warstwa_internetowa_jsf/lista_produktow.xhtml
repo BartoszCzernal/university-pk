@@ -13,9 +13,23 @@
             </ui:define>
             <ui:define name="content">
                 <h:form styleClass="jsfcrud_list_form">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color:red" infoStyle="color:green" layout="table" />
+                    </h:panelGroup>
                     <h:outputText escape="false" value="#{bundle['lista_produktow.pusta']}" 
-                                  rendered="#{managed_produkt.items.rowCount == 0}"/>
-                    <h:panelGroup rendered="#{managed_produkt.items.rowCount > 0}">
+                                  rendered="#{managed_produkt.pagination.itemsCount == 0}"/>
+                    <h:panelGroup rendered="#{managed_produkt.pagination.itemsCount > 0}">
+                        <h:outputText value="#{managed_produkt.pagination.pageFirstItem + 1}
+                                      ..#{managed_produkt.pagination.pageLastItem + 1}
+                                      /#{managed_produkt.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink
+                            action="#{managed_produkt.previous}"
+                            value="#{bundle['jsf.lista_produktow.poprzedni']} #{managed_produkt.pagination.pageSize}"
+                            rendered="#{managed_produkt.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink
+                            action="#{managed_produkt.next}"
+                            value="#{bundle['jsf.lista_produktow.nastepny']} #{managed_produkt.pagination.pageSize}"
+                            rendered="#{managed_produkt.pagination.hasNextPage}"/>&nbsp;
                         <h:dataTable value="#{managed_produkt.items}" var="item" border="0" 
                                      cellpadding="2" cellspacing="0" 
                                      rowClasses="jsfcrud_odd_row,jsfcrud_even_row" 
@@ -36,28 +50,38 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle['lista_produktow.cena']}"/>
                                 </f:facet>
-                                <h:outputText value="#{item.cena}"/>
+                                <h:outputText value="#{item.cena}">
+                                    <f:convertNumber pattern="####.## z&#322;" />
+                                </h:outputText>
+                                
                             </h:column>
 
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle['lista_produktow.promocja']}"/>
                                 </f:facet>
-                                <h:outputText value="#{item.promocja}"/>
+                                <h:outputText value="#{item.promocja}">
+                                    <f:convertNumber currencySymbol="%" type="currency" />
+                                </h:outputText>
+                                
                             </h:column>
 
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle['lista_produktow.data']}"/>
                                 </f:facet>
-                                <h:outputText value="#{item.data_produkcji}"/>
+                                <h:outputText value="#{item.data_produkcji}">
+                                    <f:convertDateTime pattern="EEEEEEEE, dd-MM-yyyy" />
+                                </h:outputText>
                             </h:column>
 
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle['lista_produktow.cena_brutto']}"/>
                                 </f:facet>
-                                <h:outputText value="#{item.cena_brutto}"/> 
+                                <h:outputText value="#{item.cena_brutto}">
+                                    <f:convertNumber currencySymbol="z&#322;" type="currency" />
+                                </h:outputText>
                             </h:column>
                         </h:dataTable>                  
                     </h:panelGroup>
