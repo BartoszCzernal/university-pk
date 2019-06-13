@@ -141,5 +141,10 @@ public class Fasada_warstwy_biznesowej {
         p.setPromocja(o_update.getPromocja());
         return true;
     }
+    
+    public void remove(Produkt_dto p) {
+        Produkt1 produkt = wykonaj_produkt(p);
+        getProdukty().remove(produkt);
+    }
 
 }

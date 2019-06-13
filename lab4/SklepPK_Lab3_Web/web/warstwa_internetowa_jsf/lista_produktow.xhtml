@@ -95,10 +95,16 @@
                                                value="#{bundle['lista_produktow.edycja']}"/>
                                 
                                 <h:outputText value=" " />
+                                <h:commandLink action="#{managed_produkt.destroy}"
+                                               value="#{bundle['lista_produktow.usun']}"/>
                             </h:column>
                         </h:dataTable>                  
                     </h:panelGroup>
                     <h:commandButton id="powrot" value="#{bundle['lista_produktow.powrot']}" action="/faces/index1" />
+                    <h:commandButton id="refresh"
+                                     value="#{bundle['lista_produktow.refresh']}"
+                                     action="#{managed_produkt.refresh}" />
+                                     
                 </h:form>
 
             </ui:define>

@@ -67,5 +67,13 @@ public abstract class PaginationHelper {
         this.page = getItemsCount() / pageSize;
     }
     
+    public void updatePage() {
+        setPage();
+        int pom2 = getItemsCount()%pageSize;
+        if (pom2 == 0) {
+            page--;
+        }
+    }
+    
     
 }

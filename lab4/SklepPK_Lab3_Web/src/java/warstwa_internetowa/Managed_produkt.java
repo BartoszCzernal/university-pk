@@ -73,6 +73,31 @@ public class Managed_produkt implements ActionListener, Serializable {
         return powrot;
     }
     
+    public String destroy() {
+        produkt_dto = (Produkt_dto) items.getRowData();
+        int ile = items.getRowCount();
+        if (ile == 1) {
+            this.getPagination().previousPage();
+        }
+        performDestroy();
+        return "lista_produktow";
+    }
+    
+    private void performDestroy() {
+        try {
+            getFasada().remove(produkt_dto);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("Usunieto_produkt"));
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("Blad_usuwania"));
+        }
+    }
+    
+    public String refresh() {
+        getPagination().updatePage();
+        items = getPagination().createPageDataModel();
+        return "lista_produktow";
+    }
+    
     Produkt_dto produkt_dto_przed;
     
     public String prepareEdit() {

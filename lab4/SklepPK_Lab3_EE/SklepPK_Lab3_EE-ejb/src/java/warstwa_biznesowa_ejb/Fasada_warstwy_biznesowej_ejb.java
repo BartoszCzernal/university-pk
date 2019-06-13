@@ -64,5 +64,10 @@ public class Fasada_warstwy_biznesowej_ejb implements Fasada_warstwy_biznesowej_
         return fasada.edit(o_przed, o_update);
     }
     
+    @Override
+    public void remove(Produkt_dto p) {
+        fasada.remove(p);
+    }
+    
     
 }
